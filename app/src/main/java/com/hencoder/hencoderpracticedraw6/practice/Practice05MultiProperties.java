@@ -4,16 +4,18 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import com.hencoder.hencoderpracticedraw6.R;
+import com.hencoder.hencoderpracticedraw6.Utils;
 
 public class Practice05MultiProperties extends ConstraintLayout {
     Button animateBt;
     ImageView imageView;
-
+    boolean clickCount = true ;
     public Practice05MultiProperties(Context context) {
         super(context);
     }
@@ -39,6 +41,24 @@ public class Practice05MultiProperties extends ConstraintLayout {
             @Override
             public void onClick(View v) {
                 // TODO 在这里处理点击事件，同时对多个属性做动画
+
+                Log.i("clickCount",( clickCount )+"clickCount"+"");
+                if (clickCount){
+                    imageView.animate()
+                            .translationX(Utils.dpToPixel(200))
+                            .rotation(360)
+                            .scaleX(1)
+                            .scaleY(1)
+                            .alpha(1);
+                }else {
+                    imageView.animate()
+                            .translationX(Utils.dpToPixel(0))
+                            .rotation(0)
+                            .scaleX(0)
+                            .scaleY(0)
+                            .alpha(0);
+                }
+                clickCount = clickCount == false ? true : false;
             }
         });
     }

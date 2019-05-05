@@ -11,6 +11,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.hencoder.hencoderpracticedraw6.R;
+import com.hencoder.hencoderpracticedraw6.Utils;
 
 public class Practice06Duration extends LinearLayout {
     SeekBar durationSb;
@@ -19,7 +20,7 @@ public class Practice06Duration extends LinearLayout {
     ImageView imageView;
 
     int duration = 300;
-
+    int translationState = 0;
     public Practice06Duration(Context context) {
         super(context);
     }
@@ -55,7 +56,19 @@ public class Practice06Duration extends LinearLayout {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
+                switch (translationState) {
+                    case 0:
+                        imageView.animate().translationX(Utils.dpToPixel(100)).setDuration(duration);
+                        break;
+                    case 1:
+                        imageView.animate().translationX(0).setDuration(duration);
+                        break;
+                }
+                if (translationState < 1) {
+                    translationState++;
+                } else {
+                    translationState = 0;
+                }
             }
         });
 

@@ -3,6 +3,7 @@ package com.hencoder.hencoderpracticedraw6.practice;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,7 +14,7 @@ import com.hencoder.hencoderpracticedraw6.R;
 public class Practice03Scale extends RelativeLayout {
     Button animateBt;
     ImageView imageView;
-
+    int clickCount = 0 ;
     public Practice03Scale(Context context) {
         super(context);
     }
@@ -37,6 +38,26 @@ public class Practice03Scale extends RelativeLayout {
             @Override
             public void onClick(final View v) {
                 // TODO 在这里处理点击事件，通过 View.animate().scaleX/Y() 来让 View 放缩
+                clickCount = clickCount >= 4 ? 0 : (clickCount++);
+                Log.i("clickCount",( clickCount >= 9 )+"clickCount"+""+(clickCount++));
+                switch (clickCount){
+                    case 1:
+                        imageView.animate().scaleX(1.5f);
+                        imageView.animate().scaleY(1.5f);
+                        break;
+                    case 2:
+                        imageView.animate().scaleX(1);
+                        imageView.animate().scaleY(1);
+                        break;
+                    case 3:
+                        imageView.animate().scaleX(0.5f);
+                        imageView.animate().scaleY(0.5f);
+                        break;
+                    case 4:
+                        imageView.animate().scaleX(1);
+                        imageView.animate().scaleY(1);
+                        break;
+                }
             }
         });
     }

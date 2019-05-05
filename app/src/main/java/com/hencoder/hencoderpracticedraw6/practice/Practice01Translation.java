@@ -15,13 +15,15 @@ import android.widget.RelativeLayout;
 
 import com.hencoder.hencoderpracticedraw6.R;
 
+import java.util.Random;
+
 import static android.os.Build.VERSION.SDK_INT;
 import static com.hencoder.hencoderpracticedraw6.Utils.dpToPixel;
 
 public class Practice01Translation extends RelativeLayout {
     Button animateBt;
     ImageView imageView;
-
+    int i = 0;
     public Practice01Translation(Context context) {
         super(context);
     }
@@ -49,6 +51,20 @@ public class Practice01Translation extends RelativeLayout {
             @Override
             public void onClick(final View v) {
                 // TODO 在这里处理点击事件，通过 View.animate().translationX/Y/Z() 来让 View 平移
+                Random random = new Random();
+                int ra = random.nextInt((600-100)+100);
+                i += 1;
+
+                if(i==1){
+                    imageView.animate().translationY(ra);
+                }else if (i==2){
+                    imageView.animate().translationX(ra);
+                }else if(i==3){
+                    if (SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        imageView.animate().translationZ(ra);
+                    }
+                }
+
             }
         });
     }
